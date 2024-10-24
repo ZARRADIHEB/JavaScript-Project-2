@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sentence Analyzer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #121212;
+        color: #fff;
+      }
+
+      .input-section {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .input-section input {
+        padding: 10px;
+        font-size: 16px;
+        width: 300px;
+        margin-right: 10px;
+        border-radius: 5px;
+        border: 1px solid #444;
+        background-color: #222;
+        color: #fff;
+      }
+
+      .input-section button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      .input-section button:hover {
+        background-color: #45a049;
+      }
+
+      .container {
+        display: flex;
+        gap: 20px;
+      }
+
+      .box {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border-radius: 15px;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      .box1 {
+        background-color: #ff6f61;
+      }
+
+      .box2 {
+        background-color: #6b5b95;
+      }
+
+      .box3 {
+        background-color: #88b04b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="input-section">
+      <input
+        type="text"
+        id="sentenceInput"
+        placeholder="Enter a sentence here"
+      />
+      <button onclick="countInSentence()">Analyze</button>
+    </div>
+
+    <div class="container">
+      <div class="box box1" id="characters">Characters: 0</div>
+      <div class="box box2" id="words">Words: 0</div>
+      <div class="box box3" id="vowels">Vowels: 0</div>
+    </div>
+
+    <script>
+      function countInSentence() {
+        let n = document.getElementById("sentenceInput").value.toLowerCase();
+
+        let noc = 0;
+        let now = 1;
+        let nov = 0;
+
+        let vowels = "aeiou";
+
+        for (let i = 0; i < n.length; i++) {
+          noc++;
+
+          if (n[i] === " " || n[i] === ".") {
+            now++;
+          }
+
+          if (vowels.includes(n[i])) {
+            nov++;
+          }
+        }
+
+        document.getElementById("characters").textContent =
+          "Characters: " + noc;
+        document.getElementById("words").textContent = "Words: " + now;
+        document.getElementById("vowels").textContent = "Vowels: " + nov;
+      }
+      document
+        .getElementById("sentenceInput")
+        .addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            countInSentence();
+          }
+        });
+    </script>
+  </body>
+</html>
